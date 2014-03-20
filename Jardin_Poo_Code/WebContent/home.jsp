@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Jardï¿½n infantil Smart Kids</title>
+<title>Jardín infantil Smart Kids</title>
 <!-- <link rel="stylesheet" href="css/estilos.css"> -->
 <link rel="stylesheet" type="text/css" href="css/snap.css" />
 <link rel="stylesheet" type="text/css" href="css/assets/demo.css" />
@@ -19,7 +19,7 @@
                         <a href="https://twitter.com/jakiestfu" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @jakiestfu</a>
                         <iframe src="http://ghbtns.com/github-btn.html?user=jakiestfu&amp;repo=Snap.js&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="20"></iframe>
                     </div> -->
-                    <h4>Administraciï¿½n</h4>
+                    <h4>Administrción</h4>
                     <ul>
                         <li><a href="default.html">Profesores</a></li>
                         <li><a href="noDrag.html">Logros</a></li>
@@ -30,7 +30,7 @@
                         <li><a href="toggles.html">Graficas</a></li>
                     </ul>
                     <div>
-                        <p><p>
+                        <p>Administración POO-CODE<p>
                     </div>
                 </div>
             </div>
