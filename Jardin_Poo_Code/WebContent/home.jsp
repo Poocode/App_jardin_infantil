@@ -30,7 +30,7 @@
                         <li><a href="toggles.html">Graficas</a></li>
                     </ul>
                     <div>
-                        <p>p>
+                        <p><p>
                     </div>
                 </div>
             </div>
