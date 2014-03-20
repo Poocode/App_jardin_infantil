@@ -43,7 +43,7 @@
                 <h1>Jard�n infantil Smart Kids</h1>
             </div>
             
-            <h1>Listo para programar</h1>
+            <h1></h1>
         </div>
         <script type="text/javascript" src="js/snap.js"></script>
         <script type="text/javascript">
