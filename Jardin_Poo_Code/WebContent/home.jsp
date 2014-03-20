@@ -30,7 +30,7 @@
                         <li><a href="toggles.html">Graficas</a></li>
                     </ul>
                     <div>
-                        <p>Administración POO-CODE<p>
+                        <p>Administración POO-CODe<p>
                     </div>
                 </div>
             </div>
