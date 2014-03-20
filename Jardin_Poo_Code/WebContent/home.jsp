@@ -40,7 +40,7 @@
         <div id="content" class="snap-content">
             <div id="toolbar">
                 <a href="#" id="open-left"></a>
-                <h1>Jard�n infantil Smart Kids</h1>
+                <h1>Jardin infantil Smart Kids</h1>
             </div>
             
             <h1></h1>
