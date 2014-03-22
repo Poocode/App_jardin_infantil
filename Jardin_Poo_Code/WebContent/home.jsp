@@ -21,16 +21,16 @@
                     </div> -->
                     <h4>Administrción</h4>
                     <ul>
-                        <li><a href="default.html">Profesores</a></li>
-                        <li><a href="noDrag.html">Logros</a></li>
-                        <li><a href="dragElement.html">Grados</a></li>
-                        <li><a href="rightDisabled.html">Alumnos</a></li>
+                        <li><a href="MyServletControlador?action=list">Profesores</a></li>
+                        <li><a href="#">Logros</a></li>
+                        <li><a href="#">Grados</a></li>
+                        <li><a href="#">Alumnos</a></li>
                         <li><a href="hyperextend.html">Acudientes</a></li>
                         <li><a href="skinnyThreshold.html">Reportes</a></li>
                         <li><a href="toggles.html">Graficas</a></li>
                     </ul>
                     <div>
-                        <p>Administración POO-CODe<p>
+                        <p>Administración POO-CODE<p>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         <div id="content" class="snap-content">
             <div id="toolbar">
                 <a href="#" id="open-left"></a>
-                <h1>Jardin infantil Smart Kids</h1>
+                <h1>Bienvenido deslice a derecha para la administración</h1>
             </div>
             
             <h1></h1>
