@@ -3,6 +3,7 @@ package com.poocode.entidad;
 public class ModeloEntidadProfesores {
 	int id;
 	String nombreApellido;
+	String apellido;
 	String telefono;
 	String ciudad;
 	int estado;
@@ -29,6 +30,14 @@ public class ModeloEntidadProfesores {
 	
 	public void setNombreApellido(String nombreApellido){
 		this.nombreApellido = nombreApellido;
+	}
+	
+	public String getApellido(){
+		return apellido;
+	}
+	
+	public void setApellido(String apellido){
+		this.apellido = apellido;
 	}
 	
 	public String getCiudad(){

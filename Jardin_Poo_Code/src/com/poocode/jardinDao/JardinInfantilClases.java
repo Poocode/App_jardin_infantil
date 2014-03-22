@@ -62,7 +62,22 @@ public class JardinInfantilClases {
 	}// Metodo listar profesores 
 	
 	
-	
+	public void addProfesor(ModeloEntidadProfesores addP){
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("INSERT INTO dinprofesores(res_id, res_nombre, res_apellido, res_telefono, res_ciudad, res_estado) VALUES (?,?,?,?,?,?)");
+			preparedStatement.setInt(1, addP.getId());
+			preparedStatement.setString(2, addP.getNombreApellido());
+			preparedStatement.setString(3, addP.getApellido());
+			preparedStatement.setString(4, addP.getTelefono());
+			preparedStatement.setString(5, addP.getCiudad());
+			preparedStatement.setInt(6, addP.getEstado());
+			preparedStatement.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}//Fin del metodo insertar Profesor
 	
 	
 	

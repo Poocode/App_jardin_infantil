@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.poocode.entidad.ModeloEntidadProfesores;
 import com.poocode.jardinDao.JardinInfantilClases;
 
 
@@ -37,6 +38,26 @@ public class MyServletControlador extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String indicador = request.getParameter("indi");
+		
+		if(indicador.equalsIgnoreCase("iprs")){
+			ModeloEntidadProfesores profeso = new ModeloEntidadProfesores();
+			
+			String cc = request.getParameter("idprofesor");
+			String est = request.getParameter("usr_status");
+			
+			try {
+				profeso.setId(Integer.parseInt(cc));
+				profeso.setNombreApellido(request.getParameter("nombre"));
+				profeso.setApellido(request.getParameter("apellidos"));
+				profeso.setTelefono(request.getParameter("telefono"));
+				profeso.setCiudad(request.getParameter("ciudad"));
+				profeso.setEstado(Integer.parseInt(est));
+				mClases.addProfesor(profeso);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
