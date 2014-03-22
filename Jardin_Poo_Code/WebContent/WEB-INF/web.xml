@@ -9,8 +9,19 @@
     <servlet-class>com.poocode.servlet.MyServlet</servlet-class>
   </servlet>
   
+  <servlet>
+    <servlet-name>MyServletControlador</servlet-name>
+    <servlet-class>com.poocode.servlet.MyServletControlador</servlet-class>
+  </servlet>
+    
   <servlet-mapping>
     <servlet-name>MyServlet</servlet-name>
     <url-pattern>/MyServlet/*</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>MyServletControlador</servlet-name>
+    <url-pattern>/MyServletControlador/*</url-pattern>
+  </servlet-mapping>
+
 </web-app>
