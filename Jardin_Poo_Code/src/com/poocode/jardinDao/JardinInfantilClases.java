@@ -3,9 +3,12 @@ package com.poocode.jardinDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import java.sql.Statement;
 import com.poocode.conexion.DbUtil;
 import com.poocode.entidad.ModeloEndidadLogin;
+import com.poocode.entidad.ModeloEntidadProfesores;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JardinInfantilClases {
 	private Connection connection;
@@ -33,4 +36,36 @@ public class JardinInfantilClases {
 		}
 		return mensaje;
 	}// Fin del metodo validar Usuairo
+	
+	public List<ModeloEntidadProfesores> getAllProfesores(){
+		
+		List<ModeloEntidadProfesores> mProfesores = new ArrayList<ModeloEntidadProfesores>();
+		String indicador = "";
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement
+					.executeQuery("SELECT res_id, UPPER(CONCAT(res_nombre ,' ', res_apellido)) AS nombreP, res_telefono, res_ciudad, res_estado FROM dinprofesores ORDER BY res_nombre");
+			
+			while (rs.next()) {
+				ModeloEntidadProfesores mProModelo = new ModeloEntidadProfesores();
+				mProModelo.setId(rs.getInt("res_id"));
+				mProModelo.setNombreApellido(rs.getString("nombreP"));
+				mProModelo.setTelefono(rs.getString("res_telefono"));
+				mProModelo.setCiudad(rs.getString("res_ciudad"));
+				mProModelo.setEstado(rs.getInt("res_estado"));
+				mProfesores.add(mProModelo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mProfesores;
+	}// Metodo listar profesores 
+	
+	
+	
+	
+	
+	
+	
+	
 }
