@@ -3,6 +3,7 @@ package com.poocode.jardinDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import com.poocode.conexion.DbUtil;
 import com.poocode.entidad.ModeloEndidadLogin;
@@ -12,7 +13,6 @@ import java.util.List;
 
 public class JardinInfantilClases {
 	private Connection connection;
-
 	public JardinInfantilClases() {
 		connection = DbUtil.getConnection();
 	}
@@ -44,12 +44,13 @@ public class JardinInfantilClases {
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement
-					.executeQuery("SELECT res_id, UPPER(CONCAT(res_nombre ,' ', res_apellido)) AS nombreP, res_telefono, res_ciudad, res_estado FROM dinprofesores ORDER BY res_nombre");
+					.executeQuery("SELECT res_id, UPPER(res_nombre) AS nombre, UPPER(res_apellido) AS apellido, res_telefono, res_ciudad, res_estado FROM dinprofesores WHERE res_estado = 1 ORDER BY res_nombre");
 			
 			while (rs.next()) {
 				ModeloEntidadProfesores mProModelo = new ModeloEntidadProfesores();
 				mProModelo.setId(rs.getInt("res_id"));
-				mProModelo.setNombreApellido(rs.getString("nombreP"));
+				mProModelo.setNombreApellido(rs.getString("nombre"));
+				mProModelo.setApellido(rs.getString("apellido"));
 				mProModelo.setTelefono(rs.getString("res_telefono"));
 				mProModelo.setCiudad(rs.getString("res_ciudad"));
 				mProModelo.setEstado(rs.getInt("res_estado"));
@@ -74,13 +75,52 @@ public class JardinInfantilClases {
 			preparedStatement.setInt(6, addP.getEstado());
 			preparedStatement.executeUpdate();
 			
-		}catch (Exception e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}	
 	}//Fin del metodo insertar Profesor
 	
 	
+	public void editProfesores(ModeloEntidadProfesores editP){
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("UPDATE dinprofesores SET res_nombre=?,res_apellido=?,res_telefono=?,res_ciudad=?,res_estado=? WHERE res_id=?");
+			preparedStatement.setString(1, editP.getNombreApellido());
+			preparedStatement.setString(2, editP.getApellido());
+			preparedStatement.setString(3, editP.getTelefono());
+			preparedStatement.setString(4, editP.getCiudad());
+			preparedStatement.setInt(5, editP.getEstado());
+			preparedStatement.setInt(6, editP.getId());
+			preparedStatement.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}	
+	}//Fin del metodo actualizar 
 	
-	
+	public String selectEspecial(){
+		String resultadogeneral = "";
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement
+					.executeQuery("SELECT res_id, UPPER(res_nombre) AS nombre, UPPER(res_apellido) AS apellido, res_telefono, res_ciudad, res_estado FROM dinprofesores WHERE res_estado = 1 ORDER BY res_nombre");
+			
+			while (rs.next()) {
+				resultadogeneral = resultadogeneral+" <tr>" +
+														"<td>"+rs.getInt("res_id")+"</td>" +
+														"<td>"+rs.getString("nombre")+"</td>" +
+														"<td>"+rs.getString("apellido")+"</td>" +
+														"<td>"+rs.getString("res_telefono")+"</td>" +
+														"<td>"+rs.getString("res_ciudad")+"</td>" +
+														"<td><span class='btn btn-mini'>Activo</span></td>" +
+														"<td><a data-accion='editar' class='btn btn-mini btn-success' href="+rs.getInt("res_id")+">Editar</a></td>" +
+													" </tr>";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return resultadogeneral;
+	}
 	
 }

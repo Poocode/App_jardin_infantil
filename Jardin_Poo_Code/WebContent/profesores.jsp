@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-   
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,18 +21,14 @@
 <style type="text/css">
 	.content-main{
 		margin-top: 60px;
-		
 	}
 	#content{
 		padding: 20px;
 	}
-	span{
-    	 color: red;
-	}
+	.error {color: #f00;}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-	
 	$("#agregarTipo").dialog({
 		autoOpen: false,
 		width:300,
@@ -44,21 +40,49 @@ $(document).ready(function() {
 		}
 	});
 	
-	
 	$('#goNuevoUser').click(function(event) {
-		$( "#agregarTipo" ).dialog({autoOpen:true});
+		$( "#agregarTipo" ).dialog({title:'Add Profesor',autoOpen:true});
 	});
 	
 	$('#formUsers').validate({
 		submitHandler: function(){
 			var str = $('#formUsers').serialize();
+			//alert(str);
 	        $.post('MyServletControlador',str,function(responseText) {
-	        						
+	        	
+	        	if($('#indi').val() == 'editPro'){
+	        		$('#listaUsuariosOK').empty();
+	        	}	        	
+	        	$('#listaUsuariosOK').append(responseText); 
+	        	
+	        	$('#agregarTipo').dialog('close');
 	       	});
 		},
 	    errorPlacement: function(error, element) {
 	        error.appendTo(element.prev("span").append());
 	    }
+	});
+	
+	
+	// Edición de Registros
+	$('body').on('click','#listaUsuariosOK a',function (e){
+		e.preventDefault();
+		idUser_ok = $(this).attr('href');
+		$('#indi').val('editPro');
+		var varl = "1";
+		$("#idprofesor").attr('disabled','disabled');
+		$('#idprofesor').val($(this).parent().parent().children('td:eq(0)').text());
+		$('#idprofesor2').val($(this).parent().parent().children('td:eq(0)').text());
+		$('#nombre').val($(this).parent().parent().children('td:eq(1)').text());
+		$('#apellidos').val($(this).parent().parent().children('td:eq(2)').text());
+		$('#telefono').val($(this).parent().parent().children('td:eq(3)').text());
+		$('#ciudad').val($(this).parent().parent().children('td:eq(4)').text());
+		$('#usr_status option[value='+varl+']').attr('selected',true);
+		//Abrimos el formulario
+		$('#agregarTipo').dialog({
+						title:'Edit Profesor',
+						autoOpen:true
+		});
 	});
 });
 
@@ -84,9 +108,9 @@ $.extend($.expr[":"],
             return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
         }
 });
+
 function soloNumeros(e){
-	var key = window.Event ? e.which : e.keyCode;
-	
+	var key = window.Event ? e.which : e.keyCode
 	return (key >= 48 && key <= 57);
 }
 </script>	
@@ -100,37 +124,38 @@ function soloNumeros(e){
 		<input type="hidden" id="accion" name="accion" class="{required:true}"/>
 		<input type="hidden" id="id_user" name="id_user" class="{required:true}" value="0"/>
     </fieldset>
-	<fieldset id="idprofesor">
+	<fieldset id="idprofesort">
 		<p>Identifiaci&oacute;n:</p>
 		<span></span>
-		<input type="text" id="idprofesor" name="idprofesor" maxlength="10" class="{required:true,maxlength:120} span3" onKeyPress="return soloNumeros(event)" />
+		<input type="text" id="idprofesor" name="idprofesor" class="{required:true,maxlength:120} span3" onKeyPress="return soloNumeros(event)" />
+		<input type="hidden" id="idprofesor2" name="idprofesor2" class="{required:true,maxlength:120} span3" onKeyPress="return soloNumeros(event)" />
 	</fieldset>
 	
-	<fieldset id="nombre">
+	<fieldset id="nombret">
 		<p>Nombres:</p>
 		<span></span>
 		<input type="text" id="nombre" name="nombre" placeholder="" class="{required:true,maxlength:120} span3"/>
 	</fieldset>
 	
-	<fieldset id="apellidos">
+	<fieldset id="apellidost">
 		<p>Apellidos:</p>
 		<span></span>
 		<input type="text" id="apellidos" name="apellidos" placeholder="" class="{required:true,maxlength:120} span3"/>
 	</fieldset>
 	
-	<fieldset id="telefono">
+	<fieldset id="telefonot">
 		<p>Telefono:</p>
 		<span></span>
 		<input type="text" id="telefono" name="telefono" placeholder="" class="{required:true,maxlength:120} span3"/>
 	</fieldset>
 	
-	<fieldset id="telefono">
+	<fieldset id="ciudadt">
 		<p>Ciudad:</p>
 		<span></span>
 		<input type="text" id="ciudad" name="ciudad" placeholder="" class="{required:true,maxlength:120} span3"/>
 	</fieldset>
 	
-	<fieldset id="usr_status">
+	<fieldset id="usr_statust">
 		<p>Status</p>
 		<span></span>
 		<select id="usr_status" name="usr_status" class="{required:true} span3">
@@ -149,11 +174,6 @@ function soloNumeros(e){
             <div class="snap-drawer snap-drawer-left">
                 <div>
                      <h3>Smart Kids</h3>
-                    <!-- <div class="demo-social">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text="Snap.js - A Library for creating beautiful mobile shelfs in Javascript" data-url="http://jakiestfu.github.com/Snap.js/" data-count="none" data-via="jakiestfu">Tweet</a>
-                        <a href="https://twitter.com/jakiestfu" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @jakiestfu</a>
-                        <iframe src="http://ghbtns.com/github-btn.html?user=jakiestfu&amp;repo=Snap.js&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="20"></iframe>
-                    </div> -->
                     <h4>Administrci&oacute;n</h4>
                     <ul>
                         <li><a href="MyServletControlador?action=list">Profesores</a></li>
@@ -187,7 +207,8 @@ function soloNumeros(e){
             		<thead>
             			<tr>
 							<th>Id</th>
-							<th>Nombre - Apellido</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
 							<th>Telefono</th>
 							<th>Ciudad</th>
 							<th>Status</th>
@@ -200,9 +221,11 @@ function soloNumeros(e){
             			<tr>
 	            			<td><c:out value="${mPe.id}" /></td>
 							<td><c:out value="${mPe.nombreApellido}" /></td>
+							<td><c:out value="${mPe.apellido}" /></td>
 							<td><c:out value="${mPe.telefono}" /></td>
 							<td><c:out value="${mPe.ciudad}" /></td>
-							<td><c:out value="${mPe.estado}" /></td>
+							<td><span class="btn btn-mini">Activo</span></td>
+							<td><a data-accion='editar' class='btn btn-mini btn-success' href=<c:out value="${mPe.id}" /> >Editar</a>
 						</tr>
 					</c:forEach>	
             		</tbody>
