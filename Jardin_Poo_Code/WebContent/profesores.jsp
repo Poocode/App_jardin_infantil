@@ -37,11 +37,13 @@ $(document).ready(function() {
 			$('#formUsers fieldset > span').removeClass('error').empty();
 			$('#formUsers input[type="text"]').val('');
 	    	$('#formUsers select > option').removeAttr('selected');
+	    	$("#idprofesor").removeAttr("disabled");
 		}
 	});
 	
 	$('#goNuevoUser').click(function(event) {
 		$( "#agregarTipo" ).dialog({title:'Add Profesor',autoOpen:true});
+		
 	});
 	
 	$('#formUsers').validate({
@@ -70,7 +72,8 @@ $(document).ready(function() {
 		idUser_ok = $(this).attr('href');
 		$('#indi').val('editPro');
 		var varl = "1";
-		$("#idprofesor").attr('disabled','disabled');
+		//$("#idprofesor").attr('disabled','disabled');
+		$("#idprofesor").attr("disabled", true);
 		$('#idprofesor').val($(this).parent().parent().children('td:eq(0)').text());
 		$('#idprofesor2').val($(this).parent().parent().children('td:eq(0)').text());
 		$('#nombre').val($(this).parent().parent().children('td:eq(1)').text());
