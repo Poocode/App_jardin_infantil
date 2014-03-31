@@ -180,7 +180,7 @@ function soloNumeros(e){
                     <h4>Administrci&oacute;n</h4>
                     <ul>
                         <li><a href="MyServletControlador?action=list">Profesores</a></li>
-                        <li><a href="noDrag.html">Logros</a></li>
+                        <li><a href="MyServletControlador?action=listlo">Logros</a></li>
                         <li><a href="dragElement.html">Grados</a></li>
                         <li><a href="rightDisabled.html">Alumnos</a></li>
                         <li><a href="hyperextend.html">Acudientes</a></li>

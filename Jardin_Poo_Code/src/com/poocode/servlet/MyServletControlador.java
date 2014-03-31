@@ -20,7 +20,8 @@ import com.poocode.jardinDao.JardinInfantilClases;
 @WebServlet("/MyServletControlador")
 public class MyServletControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String LIST_PROFESORES = "/profesores.jsp";   
+	private static String LIST_PROFESORES = "/profesores.jsp"; 
+	private static String LIST_LOGROS = "/logros.jsp";
 	private JardinInfantilClases mClases;
     public MyServletControlador() {
         super();
@@ -34,7 +35,9 @@ public class MyServletControlador extends HttpServlet {
 		if(indicador.equalsIgnoreCase("list")){
 			forward = LIST_PROFESORES;
 			request.setAttribute("mProfesores", mClases.getAllProfesores());
-		} 
+		}else if(indicador.equalsIgnoreCase("listlo")){
+			forward = LIST_LOGROS;
+		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
 		

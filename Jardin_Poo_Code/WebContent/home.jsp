@@ -22,7 +22,7 @@
                     <h4>Administrción</h4>
                     <ul>
                         <li><a href="MyServletControlador?action=list">Profesores</a></li>
-                        <li><a href="#">Logros</a></li>
+                        <li><a href="MyServletControlador?action=listlo">Logros</a></li>
                         <li><a href="#">Grados</a></li>
                         <li><a href="#">Alumnos</a></li>
                         <li><a href="hyperextend.html">Acudientes</a></li>
